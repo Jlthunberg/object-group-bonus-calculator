@@ -41,3 +41,71 @@ const employees = [
 // Ask questions when you don't.
 
 console.log( employees );
+
+function bonusCalculator(employee){
+  let employeeBonus = {
+    name: employee.name,
+    bonusPercentage: 0,
+    totalCompensation: 0,
+    totalBonus: 0
+  };
+
+  let percentage = ratingPercentage(employee.reviewRating);
+  let seniorBonus = seniorEmployee(employee.employeeNumber, employee.reviewRating);
+  let totalPercent = percentage + seniorBonus;
+// (totalPercent / 100) * employees.annualSalary
+ 
+ 
+  if(Number(employee.annualSalary) > 65000) {
+    totalPercent -= 1;
+  }  
+
+  if(totalPercent > 13){
+    totalPercent = 13;
+  }
+  if(totalPercent < 0){
+    totalPercent = 0;
+  }
+  
+  employeeBonus.bonusPercentage = totalPercent;
+  employeeBonus.totalBonus = Math.round((totalPercent / 100) * Number(employee.annualSalary));
+  employeeBonus.totalCompensation = employeeBonus.totalBonus + Number(employee.annualSalary);
+
+  console.log(totalPercent);
+  
+  return employeeBonus;
+}
+
+function ratingPercentage(rating){
+  let percentage = 0;
+  if(rating <= 2){
+    percentage = 0;
+  } else if (rating === 3){
+    //do this thing 4% bonus
+    percentage = 4;
+  } else if (rating === 4){
+    //do this thing 6%
+    percentage = 6;
+  } else if (rating === 5){
+    //do this thing 10%
+    percentage = 10;
+  }
+  return percentage;
+}
+
+function seniorEmployee(number, rating){
+  let addPercentage = 0;  
+  if(rating <= 2 ) {
+    //do this thing exit fn
+    return addPercentage;
+  } else if( number.length === 4){
+    //do this thing give additional 5%
+    addPercentage = 5;
+  }
+  else{
+    addPercentage = 0;
+  }
+  return addPercentage;
+}
+
+console.log(bonusCalculator(employees[]));
