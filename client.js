@@ -108,4 +108,8 @@ function seniorEmployee(number, rating){
   return addPercentage;
 }
 
-console.log(bonusCalculator(employees[]));
+for (let i = 0; i < employees.length; i++) {
+  console.log(bonusCalculator(employees[i]));
+  
+}
+
